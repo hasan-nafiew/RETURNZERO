@@ -1,0 +1,93 @@
+﻿@model PointOfSaleProject.Models.ViewModel.ItemVM
+@{
+    ViewBag.Title = "Create Item";
+}
+
+<h2>Create Item</h2>
+<hr/>
+
+@using (Html.BeginForm("Create","Item",FormMethod.Post, new {enctype="multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal row">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="col-md-2">
+            
+        </div>
+        <div class="col-md-10">
+            
+            <div class="form-group row">
+                @Html.LabelFor(model => model.ItemCategoryId, "Category", new {@class = "control-label col-md-3"})
+                <div class="col-md-6">
+                    @Html.DropDownListFor(model => model.ItemCategoryId, Model.SelectList, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.ItemCategoryId, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Name, new {@class = "control-label col-md-3"})
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Code, new {@class = "control-label col-md-3"})
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.Code, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Code, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Description, new {@class = "control-label col-md-3"})
+                <div class="col-md-6">
+                    @Html.TextAreaFor(model => model.Description, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.CostPrice, new {@class = "control-label col-md-3"})
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.CostPrice, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.CostPrice, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.SalePrice, new {@class = "control-label col-md-3"})
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.SalePrice, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.SalePrice, "", new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Image, new {@class = "control-label col-md-3"})
+                <div class="col-md-6">
+                    <input type="file" name="imageFile" id="imageFile"/>
+                    @Html.ValidationMessageFor(model => model.Image, "", new {@class = "text-danger"})
+                    <br/>
+                    <img src="" alt="" id="imageFilePreview" class="img-responsive" width="200" height="300"/>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <input type="submit" value="Save" class="btn btn-success pull-right" />
+            </div>
+        </div>
+    </div>
+
+
+   
+    <br/>
+
+    
+
+}
+
+<div>
+  @*@Html.ActionLink("Back to list","Create")*@  
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/POSScript/ImagePreview.js"></script>   
+}
